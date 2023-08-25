@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras</title>
+</head>
+<body>
+    <h1>Estructuras</h1>
+    <h3>Declaración de variables</h3>
+    {{with $valor:= "Hola Mundo"}}
+    <p>{{$valor}}</p>
+    {{end}}
+    <hr/>
+    <h3>Valores de Struc</h3>
+    <ul>
+        <li>Nombre {{.Nombre}}</li>
+        <li>Edad: {{.Edad}}</li>
+        <li>Perfil: {{.Perfil}}</li>
+    </ul>
+    <hr/>
+    <h3>Condicionales</h3>
+    {{if ge .Edad 18}}
+    <p>Eres Mayor de edad</p>
+    {{else}}
+    <p>Eres Menor de edad</p>
+    {{end}}
+
+    {{if eq .Perfil 1}}
+    <p>Eres Administrador</p>
+    {{else}}
+    <p>Eres Usuario</p>
+    {{end}}
+    <hr/>
+    {{.Habilidades}}
+    <ul>
+        {{range .Habilidades}}
+        <li>{{.Nombre}}</li>
+        {{end}}
+    </ul>
+</body>
+</html>
