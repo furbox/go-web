@@ -1,0 +1,19 @@
+{{ template "header"}}
+
+<main class="container">
+    <h1>Forms Go</h1>
+    <div class="row">
+        {{if ne .css ""}}
+            <div class="alert {{.css}} alert-dismissible fade show">{{.message}}</div>
+        {{end}}
+        <form class="mb-3" action="/upload-post" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="fileup" class="form-label">File</label>
+                <input type="file" name="fileup" class="form-control" id="fileup">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+
+{{ template "footer"}}

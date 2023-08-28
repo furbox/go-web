@@ -20,6 +20,17 @@ func main() {
 	mux.HandleFunc("/params/{id:.*}/{slug:.*}", rutas.Params)
 	mux.HandleFunc("/queries", rutas.Queries)
 	mux.HandleFunc("/estructuras", rutas.Estructuras)
+	mux.HandleFunc("/forms", rutas.Forms)
+	mux.HandleFunc("/forms-post", rutas.FormPost).Methods("POST")
+	mux.HandleFunc("/uploads", rutas.Upload)
+	mux.HandleFunc("/upload-post", rutas.UploadPost).Methods("POST")
+
+	//Archivos estaticos hacia mux
+	s := http.StripPrefix("/public/", http.FileServer(http.Dir("./public/")))
+	mux.PathPrefix("/public/").Handler(s)
+
+	//error 404
+	mux.NotFoundHandler = mux.NewRoute().HandlerFunc(rutas.Page404).GetHandler()
 
 	//ejecucion del servidor
 	errorVariables := godotenv.Load()
